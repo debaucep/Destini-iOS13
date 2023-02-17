@@ -18,6 +18,15 @@ class ViewController: UIViewController {
     let story0 = "You see a fork in the road"
     let choice1 = "Take a left"
     let choice2 = "Take a right"
+    var questionNumber = 0
+    
+    
+    /*
+    0 - fork
+    1 - tiger
+    2 - chest
+     
+     */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +37,31 @@ class ViewController: UIViewController {
     }
 
     @IBAction func choiceMade(_ sender: UIButton) {
-        print ("some button Pressed")
+//        print ("some button Pressed")
+        print (sender.currentTitle!)
+        
+        if sender.currentTitle! == "Take a left" {
+            questionNumber = 1
+            updateUI()
+        }
+        
+        if sender.currentTitle! == "Take a right" {
+            questionNumber = 2
+            updateUI()
+        }
+        
+        updateUI ()
+        print (questionNumber)
+        
+    }
+    
+    func updateUI () {
+
+        storyLabel.text = stories[questionNumber].title
+        choice1Button.setTitle(stories[questionNumber].choice1, for: .normal)
+        choice2Button.setTitle(stories[questionNumber].choice2, for: .normal)
+        
+
     }
     
 }
